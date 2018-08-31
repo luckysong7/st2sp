@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+
+	<!-- 객체 생성 -->
+	<!-- 1.기본 생성자에 의한 의존성 주입 -->
+	<bean id='testImpl1' class="com.di.test1.TestImpl1" />
+
+	<!-- 2.오버로딩된 생성자에 의한 의존성 주입 -->
+	<bean id='testImpl2' class="com.di.test1.TestImpl2">
+		<constructor-arg value="송혜교" />
+		<constructor-arg>
+			<value type="int">18</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- Ioc: 제어의 역전 -->
+	<!-- <bean id = "testService" class = "com.di.test1.TestService"> -->
+	<!-- 생성자 매개변수(객체) -->
+	<!-- <constructor-arg> -->
+	<!-- <ref bean="testImpl2"/> -->
+	<!-- </constructor-arg> -->
+	<!-- </bean> -->
+
+	<!-- 3. property 를 사용한 의존성 주입 -->
+	<!-- <bean id ="testService" class ="com.di.test1.TestService"> -->
+	<!-- setTest 에서 set을 뺀 Test 를 소문자로 바꿔서 -->
+	<!-- test가 알아서 setTest 를 찾아감 (규칙) -->
+	<!-- <property name="test"> -->
+	<!-- <ref bean ="testImpl2"/> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- 4. XML네임스페이스를 사용한 의존성 주입 -->
+	<bean id="testService" class="com.di.test1.TestService"
+		p:test-ref="testImpl1" />
+</beans>  
+
