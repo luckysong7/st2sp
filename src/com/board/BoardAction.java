@@ -49,11 +49,13 @@ public class BoardAction extends ActionSupport implements Preparable,
 	}
 
 	// ***************************************************
+	
 	public String created() throws Exception {
 
 		HttpServletRequest request = ServletActionContext.getRequest();
 
 		if (dto == null || dto.getMode() == null || dto.getMode().equals("")) {
+			request.setAttribute("mode", "created");
 			return INPUT;
 		}
 
@@ -220,27 +222,41 @@ public class BoardAction extends ActionSupport implements Preparable,
 		request.setAttribute("params", params);
 		request.setAttribute("lineSu", lineSu);
 		request.setAttribute("pageNum", pageNum);
+		
 		return SUCCESS;
 	}
 
 	public String updated() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 
+		
 		int num = Integer.parseInt(request.getParameter("num"));
-		String mode = request.getParameter("mode");
-		if (mode.equals("mode")) {
-			dto = (BoardDTO) dao.getReadData("board.readData", num);
-
-			if (dto == null) {
-				return "read-error";
-			}
-
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		if(dto == null || dto.getMode() == null || dto.getMode().equals("")){
+			dto = (BoardDTO)dao.getReadData("board.readData", num);
+	
 			request.setAttribute("mode", "updated");
-			request.setAttribute("pageNum", dto.getPageNum());
+			request.setAttribute("pageNum", pageNum);
 			return INPUT;
+		
 		}
-		dao.updateData("board.updateData", dto);
 
+		dao.updateData("board.updateData", dto);
 		return SUCCESS;
+	}
+	
+	public String deleted() throws Exception {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		int num = Integer.parseInt(request.getParameter("num"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		System.out.println(num);
+		System.out.println(pageNum);
+		dao.deleteData("board.deleteData", num);
+		request.setAttribute("pageNum", pageNum);
+		return SUCCESS;
+		
+		
+		
 	}
 }

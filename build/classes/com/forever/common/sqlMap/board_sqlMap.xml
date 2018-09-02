@@ -60,13 +60,13 @@
 </select>
 
 <update id="updateData" parameterClass="com.board.BoardDTO">
-		update board set name = #name#, subject = #subject#, email = #email#, content = #content#, pwd = #pwd#
+		update board set num=#num# , name = #name#, subject = #subject#, email = #email#, content = #content#, pwd = #pwd#
 		where num = #num#
 </update>
 	
 <delete id="deleteData" parameterClass="int">
-		delete board
-		where num =#num#
+		delete from board
+		where num = #num#
 				
 </delete>
 

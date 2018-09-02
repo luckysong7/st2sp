@@ -21,16 +21,15 @@ function sendData(value){
 		var url ="<%=cp%>/bbs/";
 		
 		if(value == 'updated'){
-			var mode = "update";
+			
 			url += "updated.action?";
 			
 		}else if(value == 'deleted'){
-			var mode = "delete";
+			
 			url += "deleted.action?"
 		}
 		
 		url += "num="+num;
-		url += "&mode="+mode;
 		url += "&${params}";
 		
 		location.replace(url);

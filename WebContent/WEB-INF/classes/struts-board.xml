@@ -5,9 +5,9 @@
 <struts>
 
 <package name="board" extends="default" namespace="/bbs" >
+
 	<action name="created" class="com.board.BoardAction" method="created">
 		<interceptor-ref name="myPrepareParamsStack"/>
-	
 		<result name="input">/board/created.jsp</result>
 		<result name="success" type="redirectAction">list</result>
 		
@@ -23,8 +23,14 @@
 	</action>
 	
 	<action name="updated" class="com.board.BoardAction" method="updated">
+		<interceptor-ref name="myPrepareParamsStack"/>
+		<result name= "read-error">/board/list.jsp</result>
 		<result name="input" >/board/created.jsp</result>
 		<result name="success" type="redirectAction" >list</result>
+	</action>
+	
+	<action name="deleted" class ="com.board.BoardAction" method = "deleted">
+		<result name ="success" type ="redirectAction">list?pageNum=${pageNum }</result>
 	</action>
 </package>
 

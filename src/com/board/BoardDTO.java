@@ -1,6 +1,7 @@
 package com.board;
 
 public class BoardDTO {
+	
 	private int listNum;
 
 	private int num;

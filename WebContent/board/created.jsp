@@ -73,12 +73,10 @@
     	f.pwd.value = str;
     	
     	if(f.mode.value == 'created'){
-    		f.action = "<%=cp%>/board/created.action";
+    		f.action = "<%=cp%>/bbs/created.action";
     	}else if(f.mode.value == 'updated'){
-    		f.action="<%=cp%>/board/updated.action";
-    	}else {
-        	f.action = "<%=cp%>/board/reply.action";
-    	}    	
+    		f.action="<%=cp%>/bbs/updated.action?mode=${mode }";
+    	}   	
         f.submit();
     }
 
@@ -144,39 +142,29 @@
 	</div>
 
 	<div id="bbsCreated_footer">
-		<input type="hidden" name = "boardNum" value ="${dto.boardNum }" />
+		<input type="hidden" name = "num" value ="${dto.num }" />
 		<input type="hidden" name = "pageNum" value ="${dto.pageNum }" />
-		
-		<input type="hidden" name = "groupNum" value ="${dto.groupNum }" />
-		<input type="hidden" name = "orderNo" value ="${dto.orderNo }" />
-		<input type="hidden" name = "depth" value ="${dto.depth }" />
-		<input type="hidden" name = "parent" value ="${dto.boardNum }" />
-		
 		<input type="hidden" name = "mode" value ="${mode }" />
-		<c:if test="${mode=='created' }">
+		<c:if test="${mode=='created'}">
 			<input type="button" value=" 등록하기 " class="btn2" 
        		 onclick="sendIt()"/>
         	<input type="reset" value=" 다시입력 " class="btn2" 
         	onclick="document.myFrom.subejct.focus();"/>
         	<input type="button" value=" 작성취소 " class="btn2" 
-        	onclick="javascript:location.href='<%=cp%>/board/list.action?pageNum=${pageNum }';"/>
+        	onclick="javascript:location.href='<%=cp%>/bbs/list.action?pageNum=${pageNum }';"/>
 		</c:if>
-        
-        <c:if test="${mode=='updated' }">
+        <input type="hidden" name = "num" value ="${dto.num }" />
+		<input type="hidden" name = "pageNum" value ="${dto.pageNum }" />
+		<input type="hidden" name = "mode" value ="${mode }" />
+        <c:if test="${mode=='updated'}">
+        	
 			<input type="button" value=" 수정하기 " class="btn2" 
        		 onclick="sendIt()"/>
         	<input type="button" value=" 수정취소 " class="btn2" 
-        	onclick="javascript:location.href='<%=cp%>/board/list.action?pageNum=${pageNum }';"/>
+        	onclick="javascript:location.href='<%=cp%>/bbs/list.action?pageNum=${pageNum }';"/>
 		</c:if>
 		
-		<c:if test="${mode=='reply' }">
-			<input type="button" value=" 답변등록하기 " class="btn2" 
-       		 onclick="sendIt()"/>
-        	<input type="reset" value=" 다시입력 " class="btn2" 
-        	onclick="document.myFrom.subejct.focus();"/>
-        	<input type="button" value=" 작성취소 " class="btn2" 
-        	onclick="javascript:location.href='<%=cp%>/board/list.action?pageNum=${pageNum }';"/>
-		</c:if>
+		
 	</div>
 
     </form>
