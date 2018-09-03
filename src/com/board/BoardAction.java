@@ -249,14 +249,13 @@ public class BoardAction extends ActionSupport implements Preparable,
 	public String deleted() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		int num = Integer.parseInt(request.getParameter("num"));
-		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		String pageNum = request.getParameter("pageNum");
 		System.out.println(num);
 		System.out.println(pageNum);
+		
 		dao.deleteData("board.deleteData", num);
-		request.setAttribute("pageNum", pageNum);
+//		request.setAttribute("pageNum", pageNum);
 		return SUCCESS;
-		
-		
 		
 	}
 }

@@ -30,7 +30,7 @@
 	</action>
 	
 	<action name="deleted" class ="com.board.BoardAction" method = "deleted">
-		<result name ="success" type ="redirectAction">list?pageNum=${pageNum }</result>
+		<result name ="success" type ="redirectAction">list?pageNum=${dto.pageNum }</result>
 	</action>
 </package>
 
