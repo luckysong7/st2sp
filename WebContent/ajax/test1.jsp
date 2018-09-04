@@ -32,7 +32,6 @@
 		
 		xmlHttp.onreadystatechange = callback; // 사용자 정의 함수 (callback) 
 		// 작업을 수행하고 다시 돌아왔을때 수행한느 함수를 callback 함수라고 함
-		
 		xmlHttp.open("GET",query,true);
 		//true 속성은 비동기 방식으로 데이터를 전송
 		xmlHttp.send("null");

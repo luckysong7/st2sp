@@ -60,7 +60,7 @@
 </select>
 
 <update id="updateData" parameterClass="com.board.BoardDTO">
-		update board set num=#num# , name = #name#, subject = #subject#, email = #email#, content = #content#, pwd = #pwd#
+		update board set name = #name#, subject = #subject#, email = #email#, content = #content#, pwd = #pwd#
 		where num = #num#
 </update>
 	

@@ -16,9 +16,15 @@ public class BoardDTO {
 
 	private String mode;
 	private String pageNum;
+	
+	public int getNum() {
+		return num;
+	}
 
-	
-	
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 	public int getHitCount() {
 		return hitCount;
 	}
@@ -35,13 +41,6 @@ public class BoardDTO {
 		this.listNum = listNum;
 	}
 
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
 
 	public String getName() {
 		return name;

@@ -26,10 +26,11 @@
 		<interceptor-ref name="myPrepareParamsStack"/>
 		<result name= "read-error">/board/list.jsp</result>
 		<result name="input" >/board/created.jsp</result>
-		<result name="success" type="redirectAction" >list</result>
+		<result name="success" type="redirectAction" >list?page=${pageNum}</result>
 	</action>
 	
 	<action name="deleted" class ="com.board.BoardAction" method = "deleted">
+	<interceptor-ref name="myPrepareParamsStack"/>
 		<result name ="success" type ="redirectAction">list?pageNum=${dto.pageNum }</result>
 	</action>
 </package>

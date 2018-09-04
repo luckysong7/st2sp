@@ -231,15 +231,19 @@ public class BoardAction extends ActionSupport implements Preparable,
 
 		
 		int num = Integer.parseInt(request.getParameter("num"));
-		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		
-		if(dto == null || dto.getMode() == null || dto.getMode().equals("")){
+		
+		if(dto.getMode() == null || dto.getMode().equals("")){
 			dto = (BoardDTO)dao.getReadData("board.readData", num);
 	
 			request.setAttribute("mode", "updated");
-			request.setAttribute("pageNum", pageNum);
+			
 			return INPUT;
 		
+		}
+		
+		if(dto==null){
+			return "read-error";
 		}
 
 		dao.updateData("board.updateData", dto);
@@ -252,9 +256,8 @@ public class BoardAction extends ActionSupport implements Preparable,
 		String pageNum = request.getParameter("pageNum");
 		System.out.println(num);
 		System.out.println(pageNum);
-		
+		dto.setPageNum(pageNum);
 		dao.deleteData("board.deleteData", num);
-//		request.setAttribute("pageNum", pageNum);
 		return SUCCESS;
 		
 	}

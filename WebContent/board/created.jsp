@@ -142,10 +142,10 @@
 	</div>
 
 	<div id="bbsCreated_footer">
+		<c:if test="${mode=='created'}">
 		<input type="hidden" name = "num" value ="${dto.num }" />
 		<input type="hidden" name = "pageNum" value ="${dto.pageNum }" />
 		<input type="hidden" name = "mode" value ="${mode }" />
-		<c:if test="${mode=='created'}">
 			<input type="button" value=" 등록하기 " class="btn2" 
        		 onclick="sendIt()"/>
         	<input type="reset" value=" 다시입력 " class="btn2" 
@@ -153,11 +153,12 @@
         	<input type="button" value=" 작성취소 " class="btn2" 
         	onclick="javascript:location.href='<%=cp%>/bbs/list.action?pageNum=${pageNum }';"/>
 		</c:if>
+		
+		
+        <c:if test="${mode=='updated'}">
         <input type="hidden" name = "num" value ="${dto.num }" />
 		<input type="hidden" name = "pageNum" value ="${dto.pageNum }" />
-		<input type="hidden" name = "mode" value ="${mode }" />
-        <c:if test="${mode=='updated'}">
-        	
+		<input type="hidden" name = "mode" value ="${mode }" />	
 			<input type="button" value=" 수정하기 " class="btn2" 
        		 onclick="sendIt()"/>
         	<input type="button" value=" 수정취소 " class="btn2" 
