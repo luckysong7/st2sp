@@ -12,6 +12,7 @@
  
 		   
 	<bean id="boardAction" class="com.board.BoardAction" scope="prototype" />
+	<bean id="iguestAction" class="com.iguest.guestAction" scope="prototype" />
 	
 
 </beans>

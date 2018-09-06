@@ -42,4 +42,5 @@
    </package>
 
   <include file="struts-board.xml"/>
+  <include file="struts-iguest.xml"/>
 </struts>
