@@ -11,8 +11,10 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
  
 		   
-	<bean id="boardAction" class="com.board.BoardAction" scope="prototype" />
+<!-- 	<bean id="boardAction" class="com.board.BoardAction" scope="prototype" /> -->
 	<bean id="iguestAction" class="com.iguest.guestAction" scope="prototype" />
+	<bean id="boardAction" class="com.ibbs.BoardAction" scope="prototype" />
+	<bean id="commmentAction" class="com.ibbs.CommentAction" scope="prototype" />
 	
 
 </beans>

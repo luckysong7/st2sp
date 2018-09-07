@@ -1,0 +1,54 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="ibbs" extends="default" namespace="/ibbs">
+		<action name="created" class="com.ibbs.BoardAction" method="created">
+			<interceptor-ref name="myPrepareParamsStack" />
+			<result name="input">/ibbs/created.jsp</result>
+			<result name="success" type="redirectAction">list</result>
+
+		</action>
+
+		<action name="list" class="com.ibbs.BoardAction" method="list">
+			<result name="success">/ibbs/list.jsp</result>
+		</action>
+
+		<action name="article" class="com.ibbs.BoardAction" method="article">
+			<result name="read-error" type="redirectAction">list</result>
+			<result name="success">/ibbs/article.jsp</result>
+		</action>
+
+		<action name="updated" class="com.ibbs.BoardAction" method="updated">
+			<interceptor-ref name="myPrepareParamsStack" />
+			<result name="read-error">/board/list.jsp</result>
+			<result name="input">/ibbs/created.jsp</result>
+			<result name="success" type="redirectAction">list?page=${pageNum}
+			</result>
+		</action>
+
+		<action name="deleted" class="com.ibbs.BoardAction" method="deleted">
+			<interceptor-ref name="myPrepareParamsStack" />
+			<result name="success" type="redirectAction">list?pageNum=${dto.pageNum }
+			</result>
+		</action>
+
+		<action name="created2" method="created2" class="com.ibbs.CommentAction">
+			<interceptor-ref name="myPrepareParamsStack" />
+			<result>/ibbs/commentList.jsp</result>
+		</action>
+
+		<action name="commentList2" method="list2" class="com.ibbs.CommentAction">
+			<result>/ibbs/commentList.jsp</result>
+		</action>
+
+		<action name="deleted2" method="deleted2" class="com.ibbs.CommentAction">
+			<result>/ibbs/commentList.jsp</result>
+		</action>
+
+
+	</package>
+
+</struts>

@@ -43,4 +43,5 @@
 
   <include file="struts-board.xml"/>
   <include file="struts-iguest.xml"/>
+  <include file="struts-ibbs.xml"/>
 </struts>

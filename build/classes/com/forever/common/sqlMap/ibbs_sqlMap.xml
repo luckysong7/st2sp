@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="ibbs">
+
+<select id="numMax" resultClass="int">
+	select nvl(max(boardNum),0) from ibbs
+</select>
+
+<insert id="insertData" parameterClass="com.ibbs.BoardDTO">
+	insert into ibbs(boardNum,name,subject,email,content,ipAddr,hitCount,created) values(#boardNum#,#name#,#subject#,#email#,#content#,#ipAddr#,0,sysdate)
+</insert>
+
+<select id="dataCount" parameterClass="map" resultClass="int">
+	select nvl(count(*),0) from ibbs
+	where $searchKey$ like '%' || #searchValue# || '%'
+</select>
+
+<select id="listData" parameterClass="map" resultClass="com.ibbs.BoardDTO">
+	select * from(
+	select rownum rnum, data.* from(
+	select boardNum, name, subject, email, hitCount, ipAddr, to_char(created,'YYYY-MM-DD') created from ibbs
+	where $searchKey$ like '%' || #searchValue# || '%' order by boardNum desc) data)
+	<![CDATA[
+	where rnum >= #start# and rnum <= #end#
+	]]>
+</select>
+
+<select id="readData" parameterClass="int" resultClass="com.ibbs.BoardDTO">
+		select boardNum, name, email, subject, content, ipAddr, hitcount, created from ibbs 
+		where boardNum = #boardNum#
+</select>
+
+<update id="hitCountUpdate" parameterClass="int">
+	update ibbs set hitCount = hitCount +1 
+	where boardNum = #boardNum#
+</update>
+
+<select id="preReadData" parameterClass="map" resultClass="com.ibbs.BoardDTO">
+		
+<![CDATA[		
+ 		select data.* from ( 
+ 		select boardNum, subject from ibbs 
+		where $searchKey$ like '%' || #searchValue# || '%' order by boardNum desc) data 
+		where rownum = 1 
+]]> 
+</select>
+	
+<select id="nextReadData" parameterClass="map" resultClass="com.ibbs.BoardDTO">
+		
+<![CDATA[		
+ 		select data.* from ( 
+		select boardNum, subject from ibbs 
+ 		where $searchKey$ like '%' || #searchValue# || '%' order by boardNum asc) data
+		where rownum = 1 
+ ]]> 
+</select>
+
+<update id="updateData" parameterClass="com.ibbs.BoardDTO">
+		update ibbs set name = #name#, subject = #subject#, email = #email#, content = #content#, pwd = #pwd#
+		where boardNum = #boardNum#
+</update>
+	
+<delete id="deleteData" parameterClass="int">
+		delete from ibbs
+		where boardNum = #boardNum#
+				
+</delete>
+<!-- CommentAction -->
+<select id ="numMax2" resultClass="int" parameterClass="int">
+		select nvl(max(commentNum),0) from ibbsComment
+	</select>
+
+	<insert id="insertData2" parameterClass="com.ibbs.CommentDTO">
+		insert into ibbsComment(commentNum,boardNum, name, content, ipAddr, created) values(#commentNum#, #boardNum#, #name#, #content#, #ipAddr#, sysdate)
+	</insert>
+	
+	<select id="dataCount2" resultClass="int" parameterClass="int">
+		select nvl(count(*),0) from ibbsComment 
+		where boardNum = #boardNum#
+	</select>
+	
+	<select id="listData2" parameterClass="map" resultClass="com.ibbs.CommentDTO">
+		select * from(
+		select rownum rnum, data.* from(
+		select commentNum,boardNum, name,content, ipAddr, created 
+		from ibbsComment order by commentNum desc) data)
+<![CDATA[
+		where rnum>= #start# and rnum <= #end# and boardNum = #boardNum#
+]]>
+	</select>
+
+	<delete id="deleteData2" parameterClass ="map">
+		delete from ibbsComment where boardNum = #boardNum# and commentNum = #commentNum#
+	</delete>
+
+</sqlMap>

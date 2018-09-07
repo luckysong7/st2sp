@@ -27,20 +27,29 @@
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="la.jpg" alt="Los Angeles" style="width:100%;">
+        <img src="./image/suzi.jpg" alt="suzi" width="460" height = "345" style="width:100%;">
+        <div class='carousel-caption'>
+        	<h3>배수지</h3>
+        	<p>나는 26살</p>
+        </div>
       </div>
 
       <div class="item">
-        <img src="chicago.jpg" alt="Chicago" style="width:100%;">
+        <img src="./image/sulhyun.jpg" alt="sulhyun" width="460" height = "345"  style="width:100%;">
       </div>
     
       <div class="item">
-        <img src="ny.jpg" alt="New york" style="width:100%;">
+        <img src="./image/nakyung.jpg" alt="nakyung" width="460" height = "345" style="width:100%;">
+      </div>
+      
+       <div class="item">
+        <img src="./image/hyoju.jpg" alt="hyoju" width="460" height = "345"  style="width:100%;">
       </div>
     </div>
 

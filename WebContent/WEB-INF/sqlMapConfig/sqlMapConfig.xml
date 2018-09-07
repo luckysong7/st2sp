@@ -12,4 +12,5 @@
 
   <sqlMap resource="com/forever/common/sqlMap/board_sqlMap.xml"/>
   <sqlMap resource="com/forever/common/sqlMap/iguest_sqlMap.xml"/>
+  <sqlMap resource="com/forever/common/sqlMap/ibbs_sqlMap.xml"/>
 </sqlMapConfig>
